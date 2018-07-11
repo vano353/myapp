@@ -39,4 +39,12 @@ public class GreetingEndpoint {
         String message = String.format(properties.getMessage(), name);
         return new Greeting(message);
     }
+
+    @GET
+    @Path("/threadId")
+    @Produces("application/json")
+    public String greeting() throws InterruptedException {
+        Thread.sleep(1000L);
+        return Thread.currentThread().getName();
+    }
 }
