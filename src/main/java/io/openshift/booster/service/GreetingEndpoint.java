@@ -27,6 +27,7 @@ import javax.ws.rs.QueryParam;
 @Component
 public class GreetingEndpoint {
     private final GreetingProperties properties;
+    private final String seed = String.valueOf(System.currentTimeMillis());
 
     public GreetingEndpoint(GreetingProperties properties) {
         this.properties = properties;
@@ -46,5 +47,13 @@ public class GreetingEndpoint {
     public String greeting() throws InterruptedException {
         Thread.sleep(1000L);
         return Thread.currentThread().getName();
+    }
+
+    @GET
+    @Path("/seed")
+    @Produces("application/json")
+    public String seed() throws InterruptedException {
+
+        return seed;
     }
 }
